@@ -9,6 +9,8 @@ from scipy import io
 
 
 class OpenfusFusionData(BaseModel):
+    name: str
+    path: Path
     image: NDArray[Shape["* i, * j, * k, * time"], np.float32]
     time: NDArray[Shape["* time"], np.float64]
     t0: NDArray[Shape["*"], np.float64]
@@ -26,6 +28,7 @@ def load_openfus_mat(filename: str | Path, _reader=io.loadmat) -> OpenfusFusionD
     filepath = Path(filename)
     data = _reader(filename)
     
+
     image = data['I']
     time = data['metadata']['time'].item().flatten()
     t0 = data['metadata']['t0'].item().flatten()
@@ -36,6 +39,8 @@ def load_openfus_mat(filename: str | Path, _reader=io.loadmat) -> OpenfusFusionD
     image_type = data['metadata']['imageType'].item().item()
     
     return OpenfusFusionData(
+        name=filepath.stem,
+        path=filepath,
         image=image,
         time=time,
         origin=origin,
