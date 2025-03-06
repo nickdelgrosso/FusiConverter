@@ -21,7 +21,7 @@ class LoadFusionFile:
 
 viewer = napari.Viewer()
 
-load_fusion_file = magicgui(call_button="Load Fusion File")(LoadFusionFile(_viewer=viewer))
-viewer.window.add_dock_widget(load_fusion_file)
+load_fusion_file_widget = magicgui(call_button="Load Fusion File")(LoadFusionFile(_viewer=viewer))
+viewer.window.add_dock_widget(load_fusion_file_widget)
 
 napari.run()
