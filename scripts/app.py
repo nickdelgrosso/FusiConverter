@@ -1,10 +1,6 @@
-from abc import ABC, abstractmethod
 from dataclasses import dataclass
-from typing import Callable
 from magicgui import magicgui
 import napari
-import numpy as np
-from numpydantic import NDArray, Shape
 import cortical
 
 
